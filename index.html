@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>Connect Four</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg"><i></i><i></i><i></i></div>
+  <canvas id="confetti"></canvas>
+
+  <!-- MENU -->
+  <main id="menu" class="screen active">
+    <div class="menu-inner">
+      <div class="logo">
+        <div class="logo-discs">
+          <span class="d red"></span><span class="d yellow"></span><span class="d red"></span><span class="d yellow"></span>
+        </div>
+        <h1><span class="c">Connect</span> <span class="f">Four</span></h1>
+        <p>Ligue 4 peças em linha para vencer!</p>
+      </div>
+
+      <div class="menu-card">
+        <div class="tabs">
+          <button class="tab active" data-tab="play">🎮 Jogar</button>
+          <button class="tab" data-tab="history">📜 Histórico</button>
+        </div>
+
+        <!-- Aba jogar -->
+        <section id="panelPlay" class="panel active">
+          <h2>Modo de jogo</h2>
+          <div class="chips" id="modeChips">
+            <button class="chip active" data-mode="1">1 Jogador</button>
+            <button class="chip" data-mode="2">2 Jogadores</button>
+          </div>
+
+          <div id="diffBox">
+            <h2>Dificuldade</h2>
+            <div class="chips" id="diffChips">
+              <button class="chip" data-diff="easy">Fácil</button>
+              <button class="chip active" data-diff="medium">Médio</button>
+              <button class="chip" data-diff="hard">Difícil</button>
+            </div>
+          </div>
+
+          <button id="startBtn" class="btn primary big">▶ Jogar</button>
+          <button id="soundBtn" class="btn ghost small">🔊 Som: ligado</button>
+        </section>
+
+        <!-- Aba histórico -->
+        <section id="panelHistory" class="panel">
+          <div class="stats">
+            <div class="stat"><b id="stTotal">0</b><small>Partidas</small></div>
+            <div class="stat win"><b id="stWins">0</b><small>Vitórias</small></div>
+            <div class="stat lose"><b id="stLoss">0</b><small>Derrotas</small></div>
+            <div class="stat"><b id="stDraws">0</b><small>Empates</small></div>
+          </div>
+          <p class="stat-note">Vitórias e derrotas contam só as partidas contra a CPU.</p>
+          <ul id="historyList" class="history"></ul>
+          <button id="clearHistoryBtn" class="btn ghost small">🗑 Limpar histórico</button>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- JOGO -->
+  <main id="game" class="screen">
+    <header class="topbar">
+      <button id="menuBtn" class="icon-btn" title="Menu">☰</button>
+      <div class="scores">
+        <div class="score p1" id="card1"><span class="d red mini"></span><div><small id="name1">Jogador 1</small><b id="score1">0</b></div></div>
+        <div class="score draw"><div><small>Empates</small><b id="scoreDraw">0</b></div></div>
+        <div class="score p2" id="card2"><span class="d yellow mini"></span><div><small id="name2">CPU</small><b id="score2">0</b></div></div>
+      </div>
+      <button id="soundBtn2" class="icon-btn" title="Som">🔊</button>
+    </header>
+
+    <div class="turn" id="turn">
+      <span id="turnDisc" class="d red mini"></span>
+      <span id="turnText">Sua vez</span>
+    </div>
+
+    <div class="board-wrap" id="boardWrap">
+      <div id="ghost" class="disc ghost red hidden"></div>
+      <div id="board" class="board">
+        <div id="discs" class="discs"></div>
+        <div id="grid" class="grid"></div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="restartBtn" class="btn ghost">⟳ Reiniciar rodada</button>
+    </div>
+    <p class="hint">Clique/toque numa coluna ou use as teclas 1–7</p>
+  </main>
+
+  <!-- RESULTADO -->
+  <div id="overlay" class="overlay hidden">
+    <div class="modal">
+      <div id="resultEmoji" class="emoji">🏆</div>
+      <h2 id="resultTitle">Você venceu!</h2>
+      <p id="resultText"></p>
+      <div class="modal-actions">
+        <button id="againBtn" class="btn primary">Jogar de novo</button>
+        <button id="toMenuBtn" class="btn ghost">Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
